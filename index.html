@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>Agent Wizard of Oz</title>
+
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="bulma.min.css">
+        <script type="text/javascript" src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    </head>
+    <body class="margin m-6">
+        <h1 class="title is-2">WoZ Controller</h1>
+        <div id="app">
+            <div class="columns">
+                <div class="column is-half has-background-white-ter">
+    
+                    <h4 class="title is-4">Connection</h4>
+                    <div>
+                        <label class="label is-inline">Websocket server address</label>
+                        <span class="tag is-success is-light is-rounded is-inline" v-if="connected">Connected</span>
+                        <span class="tag is-danger is-light is-rounded is-inline" v-else>Not connected</span>
+                        <input type="text" v-model="ws_address" class="input"/>
+                        
+                        <button @click="disconnect" v-if="connected" class="button is-danger is-small mt-3">Disconnect</button>
+                        <button @click="connect" v-else class="button is-success is-small mt-3">Connect</button>
+                    </div>
+    
+                    <!-- <p class="content is-small">Wrap in <speak> tags</p> -->
+                </div>
+                <div class="column is-half has-background-white-ter">
+                    <h4 class="title is-4">Logs</h4>
+                    <div style="max-height:100px; overflow:scroll;">
+                        <p class="is-size-7" v-for="log in logs">{{ log }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="columns mt-4">
+                <div class="column is-half has-background-white-ter">
+    
+                    <h4 class="title is-4">Custom speech</h4>
+                    <div>
+                        <label for="fspeech" class="label">Speech</label>
+                        <textarea v-model="custom_speech" type="text" name="fspeech" rows="3" class="textarea" placeholder="Enter custom speech commands"></textarea>
+                        <button @click="sendSpeech(custom_speech)" class="button is-link mt-3" :disabled="loading || !connected">Submit</button>
+                    </div>
+    
+                    <!-- <p class="content is-small">Wrap in <speak> tags</p> -->
+                </div>
+                <div class="column is-half has-background-white-ter">
+                    <h4 class="title is-4">Movements</h4>
+                    <div class="buttons are-regular">
+                        <button @click="sendEmotion(0)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Neutral 😐</button>
+                        <button @click="sendEmotion(1)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Smile 😊</button>
+                        <button @click="sendEmotion(2)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Concerned 😟</button>
+                        <button @click="sendEmotion(3)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Surprised 😳</button>
+                    </div>
+                    
+                    <h4 class="title is-4">Animations</h4>
+                    <div class="buttons are-regular">
+                        <button @click="sendMove(0)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Idle</button>
+                        <button @click="sendMove(2)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Wave</button>
+                        <button @click="sendMove(1)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Head nod</button>
+                        <button @click="sendMove(3)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Head shake</button>
+                        <button @click="sendMove(4)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Turn to robot</button>
+                        <button @click="sendMove(5)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Turn to human</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="columns mt-4">
+                <div class="column is-full has-background-white-ter">
+                    <h4 class="title is-4">Reusable speech commands</h4>
+                    <div class="buttons are-small">
+                        <button @click="sendSpeech('Hi! I\'m Hayley. What\'s your name?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hi! I'm Hayley. What's your name?</button>
+                        <button @click="sendSpeech('I\'m excited to work with you today')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I'm excited to work with you today</button>
+                        <button @click="sendSpeech('I hope the commute here wasn\'t too bad')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I hope the commute here wasn’t too bad</button>
+                        <button @click="sendSpeech('Did you travel by train today?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Did you travel by train today?</button>
+                        <button @click="sendSpeech('That\'s nice. How was the commute?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">That's nice. How was the commute?</button>
+                        <button @click="sendSpeech('What\'s the weather like today? I haven\'t been out today to see')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">What's the weather like today? I haven't been out today to see</button>
+                        <button @click="sendSpeech('How do you like it in Sydney?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">How do you like it in Sydney?</button>
+                        <button @click="sendSpeech('Wow! You\'ve been living here a long time')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Wow! You’ve been living here a long time</button>
+                        <button @click="sendSpeech('Have you been to other states in Australia?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Have you been to other states in Australia?</button>
+                        <button @click="sendSpeech('I\'m glad you liked it')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I’m glad you liked it</button>
+                        <button @click="sendSpeech('Well, thank you for joining me today. Shall we get started?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Well, thank you for joining me today. Shall we get started?</button>
+                        <button @click="sendSpeech('Ok, whenever you\'re ready, begin the task')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Ok, whenever you’re ready, begin the task</button>
+                        <button @click="sendSpeech('Nice')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice</button>
+                        <button @click="sendSpeech('Good')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Good</button>
+                        <button @click="sendSpeech('Hmm')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hmm</button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Close app -->
+    
+        <!-- Scripts to send commands to ROS -->
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
