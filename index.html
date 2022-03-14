@@ -36,39 +36,7 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="columns mt-4">
-                <div class="column is-half has-background-white-ter">
-    
-                    <h4 class="title is-4">Custom speech</h4>
-                    <div>
-                        <label for="fspeech" class="label">Speech</label>
-                        <textarea v-model="custom_speech" type="text" name="fspeech" rows="3" class="textarea" placeholder="Enter custom speech commands"></textarea>
-                        <button @click="sendSpeech(custom_speech)" class="button is-link mt-3" :disabled="loading || !connected">Submit</button>
-                    </div>
-    
-                    <!-- <p class="content is-small">Wrap in <speak> tags</p> -->
-                </div>
-                <div class="column is-half has-background-white-ter">
-                    <h4 class="title is-4">Movements</h4>
-                    <div class="buttons are-regular">
-                        <button @click="sendEmotion(0)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Neutral 😐</button>
-                        <button @click="sendEmotion(1)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Smile 😊</button>
-                        <button @click="sendEmotion(2)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Concerned 😟</button>
-                        <button @click="sendEmotion(3)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Surprised 😳</button>
-                    </div>
-                    
-                    <h4 class="title is-4">Animations</h4>
-                    <div class="buttons are-regular">
-                        <button @click="sendMove(0)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Idle</button>
-                        <button @click="sendMove(2)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Wave</button>
-                        <button @click="sendMove(1)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Head nod</button>
-                        <button @click="sendMove(3)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Head shake</button>
-                        <button @click="sendMove(4)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Turn to robot</button>
-                        <button @click="sendMove(5)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Turn to human</button>
-                    </div>
-                </div>
-            </div>
+
             
             <div class="columns mt-4">
                 <div class="column is-full has-background-white-ter">
@@ -117,6 +85,39 @@
                         <button @click="sendSpeech('Diapers have soft plastics, and soft plastics cannot be recycled')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">DIapers have soft plastics...</button>
                         <button @click="sendSpeech('That\'s right')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">That's right</button>
                         <button @click="sendSpeech('Awesome work Steph. Thank you')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Awesome work, thank you</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns mt-4">
+                <div class="column is-half has-background-white-ter">
+    
+                    <h4 class="title is-4">Custom speech</h4>
+                    <div>
+                        <label for="fspeech" class="label">Speech</label>
+                        <textarea v-model="custom_speech" type="text" name="fspeech" rows="3" class="textarea" placeholder="Enter custom speech commands"></textarea>
+                        <button @click="sendSpeech(custom_speech)" class="button is-link mt-3" :disabled="loading || !connected">Submit</button>
+                    </div>
+    
+                    <!-- <p class="content is-small">Wrap in <speak> tags</p> -->
+                </div>
+                <div class="column is-half has-background-white-ter">
+                    <h4 class="title is-4">Movements</h4>
+                    <div class="buttons are-regular">
+                        <button @click="sendEmotion(0)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Neutral 😐</button>
+                        <button @click="sendEmotion(1)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Smile 😊</button>
+                        <button @click="sendEmotion(2)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Concerned 😟</button>
+                        <button @click="sendEmotion(3)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Surprised 😳</button>
+                    </div>
+                    
+                    <h4 class="title is-4">Animations</h4>
+                    <div class="buttons are-regular">
+                        <button @click="sendMove(0)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Idle</button>
+                        <button @click="sendMove(2)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Wave</button>
+                        <button @click="sendMove(1)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Head nod</button>
+                        <button @click="sendMove(3)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Head shake</button>
+                        <button @click="sendMove(4)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Turn to robot</button>
+                        <button @click="sendMove(5)" class="button is-outlined is-link is-rounded" :disabled="loading || !connected">Turn to human</button>
                     </div>
                 </div>
             </div>
