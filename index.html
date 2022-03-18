@@ -40,9 +40,9 @@
             
             <div class="columns mt-4">
                 <div class="column is-full has-background-white-ter">
-                    <h4 class="title is-4">Agent #1</h4>
+                    <h4 class="title is-4">Lisa - Rapport</h4>
                     <div class="buttons are-small">
-                        <button @click="sendSpeech('Hi! I\'m Hayley. What\'s your name?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hi! I'm Hayley. What's your name?</button>
+                        <button @click="sendSpeech('Hi! I\'m Lisa. What\'s your name?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hi! I'm Lisa. What's your name?</button>
                         <button @click="sendSpeech('It\'s so nice to meet you Steph. I\'m super excited to work with you today. I hope the commute here wasn\'t too bad, the rain was so heavy earlier')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">It's so nice to meet you..</button>
                         <button @click="sendSpeech('Oh no! That\'s alright, I can lend you one from the office to use when you get back home')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Oh no! That's alright, I can lend you...</button>
                         <button @click="sendSpeech('I love comics! Bat-man is my all-time favourite. The complexity of his character is top notch')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I love comics! Batman is my...</button>
@@ -68,9 +68,60 @@
 
             <div class="columns mt-4">
                 <div class="column is-full has-background-white-ter">
-                    <h4 class="title is-4">Agent #2</h4>
+                    <h4 class="title is-4">Lisa - NoRapport</h4>
                     <div class="buttons are-small">
                         <button @click="sendSpeech('Hi! I\'m Lisa. What\'s your name?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hi! I'm Lisa. What's your name?</button>
+                        <button @click="sendSpeech('Nice to meet you. Shall we get started?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice to meet you...</button>
+                        <button @click="sendSpeech('OK. Whenever you\'re ready, begin the task.')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">OK, whenever you're ready, begin the tasl</button>
+                        <button @click="sendSpeech('Nice')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice</button>
+                        <button @click="sendSpeech('Good job')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Good job</button>
+                        <button @click="sendSpeech('Yep')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Yep</button>
+                        <button @click="sendSpeech('I\'m afraid coffee cups can\'t be recycled. They have a plastic lining')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I'm afraid coffee cups...</button>
+                        <button @click="sendSpeech('Nice')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice</button>
+                        <button @click="sendSpeech('Perfect')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Perfect</button>
+                        <button @click="sendSpeech('Yep')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Yep</button>
+                        <button @click="sendSpeech('Broken glass isn\'t accepted by recycling waste handlers')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Broken glass isn't accepted...</button>
+                        <button @click="sendSpeech('Bravo')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Bravo</button>
+                        <button @click="sendSpeech('Diapers have soft plastics, and soft plastics cannot be recycled')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">DIapers have soft plastics...</button>
+                        <button @click="sendSpeech('That\'s right')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">That's right</button>
+                        <button @click="sendSpeech('Awesome work Steph. Thank you')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Awesome work, thank you</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="columns mt-4">
+                <div class="column is-full has-background-white-ter">
+                    <h4 class="title is-4">Alice - Rapport</h4>
+                    <div class="buttons are-small">
+                        <button @click="sendSpeech('Hi! I\'m Alice. What\'s your name?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hi! I'm Alice. What's your name?</button>
+                        <button @click="sendSpeech('It\'s so nice to meet you Steph. I\'m super excited to work with you today. I hope the commute here wasn\'t too bad, the rain was so heavy earlier')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">It's so nice to meet you..</button>
+                        <button @click="sendSpeech('Oh no! That\'s alright, I can lend you one from the office to use when you get back home')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Oh no! That's alright, I can lend you...</button>
+                        <button @click="sendSpeech('I love comics! Bat-man is my all-time favourite. The complexity of his character is top notch')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I love comics! Batman is my...</button>
+                        <button @click="sendSpeech('Ahh okay, well does she like more uplifting or, dark and gruesome stories?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hmm, well, does she like...</button>
+                        <button @click="sendSpeech('Then she might like Flashpoint Bat-man the Knight of Vengeance. It has the most brooding and haunting cliffhangers in any Batman comic')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Then she might like...</button>
+                        <button @click="sendSpeech('Ok, shall we get started? The forecast tells me it is going to start raining in thirty minutes, so lets finish ASAP so you can get home dry')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">OK shall we get started?...</button>
+                        <button @click="sendSpeech('OK. Whenever you\'re ready Steph, begin the task.')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">OK whenever you're ready Steph...</button>
+                        <button @click="sendSpeech('Nice')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice</button>
+                        <button @click="sendSpeech('Good job')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Good job</button>
+                        <button @click="sendSpeech('Yep')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Yep</button>
+                        <button @click="sendSpeech('I\'m afraid coffee cups can\'t be recycled. They have a plastic lining')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">I'm afraid coffee cups...</button>
+                        <button @click="sendSpeech('Nice')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice</button>
+                        <button @click="sendSpeech('Perfect')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Perfect</button>
+                        <button @click="sendSpeech('Yep')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Yep</button>
+                        <button @click="sendSpeech('Broken glass isn\'t accepted by recycling waste handlers')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Broken glass isn't accepted...</button>
+                        <button @click="sendSpeech('Bravo')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Bravo</button>
+                        <button @click="sendSpeech('Diapers have soft plastics, and soft plastics cannot be recycled')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">DIapers have soft plastics...</button>
+                        <button @click="sendSpeech('That\'s right')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">That's right</button>
+                        <button @click="sendSpeech('Awesome work Steph. Thank you')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Awesome work, thank you</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns mt-4">
+                <div class="column is-full has-background-white-ter">
+                    <h4 class="title is-4">Alice - NoRapport </h4>
+                    <div class="buttons are-small">
+                        <button @click="sendSpeech('Hi! I\'m Alice. What\'s your name?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Hi! I'm Alice. What's your name?</button>
                         <button @click="sendSpeech('Nice to meet you. Shall we get started?')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice to meet you...</button>
                         <button @click="sendSpeech('OK. Whenever you\'re ready, begin the task.')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">OK, whenever you're ready, begin the tasl</button>
                         <button @click="sendSpeech('Nice')" :disabled="loading || !connected" class="button is-outlined is-link is-rounded">Nice</button>
