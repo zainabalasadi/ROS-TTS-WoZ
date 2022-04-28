@@ -1,4 +1,4 @@
-# agent-woz
+# ROS Text-To-Speech Wizard-of-Oz System
 
 ## Setup
 Clone the repository and navigate to the root of the project
